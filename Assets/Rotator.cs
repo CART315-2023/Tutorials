@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rotator : MonoBehaviour
 {
     public float rotationSpeed = 0.3f;
+    public PickerUpper player;
 
     private bool rotate;
 
@@ -29,7 +30,14 @@ public class Rotator : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (rotate)
+        if (player != null)
+        {
+            if (rotate && player.count >= 3)
+            {
+                this.GetComponent<Transform>().Rotate(0, rotationSpeed, 0);
+            }
+        }
+        else
         {
             this.GetComponent<Transform>().Rotate(0, rotationSpeed, 0);
         }
